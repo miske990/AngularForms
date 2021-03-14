@@ -32,8 +32,6 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
   openDialog(elm: any) {
     this.result = this.dataSource.data.find( ({ id }) => id == elm );
     this.dialog.open(DialogDataExampleDialog, {
-      width: '30%',
-      height: '84%',
       data: {
         id: this.result.id,
         regDate: this.result.regDate,

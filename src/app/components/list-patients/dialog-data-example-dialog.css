@@ -4,3 +4,7 @@
 :host ::ng-deep .mat-dialog-content{ 
     max-height: 80vh;
 } 
+::ng-deep .mat-dialog-container {
+    width: 500px !important;
+    height: 84% !important;
+}

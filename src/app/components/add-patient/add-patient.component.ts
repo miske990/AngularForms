@@ -41,6 +41,8 @@ export class AddPatientComponent implements OnInit {
   patient: AddNew[];
   newData:string;
 
+  phoneValue: string = '+39';
+
   minDate = moment().subtract(100, 'years').format("YYYY-MM-DD");
   maxDate = moment().subtract(18, 'years').format("YYYY-MM-DD");
   currentDate = new Date();
@@ -64,8 +66,6 @@ export class AddPatientComponent implements OnInit {
     },
   ]
 
-  abcText: string = '+39';
-
   constructor(private apiService: ApiService, 
               private router: Router,
               private loadDataService: LoadDataService,
@@ -78,7 +78,7 @@ export class AddPatientComponent implements OnInit {
                   vat: [''],
                   email: ['',  Validators.compose([Validators.required,  Validators.email])],
                   doctor: ['', Validators.required],
-                  phone: new FormControl(this.abcText, {
+                  phone: new FormControl('', {
                     validators: [Validators.required],
                     updateOn: "blur"
                   }),
@@ -89,7 +89,6 @@ export class AddPatientComponent implements OnInit {
                   anotherAddress: this.fb.array([this.createItem()])
                 }) 
 
-                this.addForm.valueChanges.subscribe(val => this.validateData(val));
   }
 
 
@@ -108,15 +107,7 @@ export class AddPatientComponent implements OnInit {
     this.setArrayInputs(this.arrayInputs); //set empty anotherAddress fields as default
   }
 
-  private validateData(val: any) {
-    const text: string = val['phone'];
-    const formControl = this.addForm.get('phone');
-    if (text.startsWith('+39')) {
-      formControl.setErrors(null);
-    } else {
-      formControl.setErrors({ abc: 'Must start with +39' });
-    }
-  }
+
 
   getEndDate(type: string, event: MatDatepickerInputEvent<Date>){
     this.adult = false;
@@ -149,6 +140,14 @@ export class AddPatientComponent implements OnInit {
 
   getControls() {
     return (this.addForm.get('anotherAddress') as FormArray).controls;
+  }
+
+  focusFunction(event: any) {
+    this.addForm.get('phone').setValue(this.phoneValue);
+  }
+
+  focusFunction2(value: any) {
+    value.setValue(this.phoneValue)
   }
 
   addInput() {
