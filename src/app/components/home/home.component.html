@@ -1,0 +1,31 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div fxShow="true" fxHide.lt-md>
+      <a routerLink="/home" routerLinkActive="active-list-item" mat-list-item>Home</a>
+    </div>
+    <div fxShow="true" fxHide.lt-md style="padding-left: 30px;">
+      <span class="listItem" [routerLink]="['/add-new']">AddNewPatient</span>
+    </div>
+    <div fxShow="true" fxHide.lt-md style="padding-left: 30px;">
+      <span class="listItem" [routerLink]="['/list']">PatientsList</span>
+    </div>
+    <span class="menu-spacer"></span>
+     <mat-icon>home</mat-icon> 
+</mat-toolbar>
+
+<mat-sidenav-container fxFlexFill>
+    <mat-sidenav #sidenav>
+      <mat-nav-list>   
+        <a class="listItem" [routerLink]="['/add-new']" mat-list-item>Add New Patient</a>
+        <a class="listItem" [routerLink]="['/list']" mat-list-item>Patients List</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content class="sidenavContent" style="background-image: url(assets/background.jpeg)">
+      <div class="title">Welcome to "Health" portal</div>
+      <div class="content">Quickly and easily add a new patient and view a list of existing ones with just a few clicks.</div>
+      <div class="content2">Choose option and get started.</div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+

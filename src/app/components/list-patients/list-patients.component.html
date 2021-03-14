@@ -1,0 +1,94 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <div fxShow="true" fxHide.lt-md>
+    <span class="listItem" [routerLink]="['/home']" mat-list-item>Home</span>
+  </div>
+  <div fxShow="true" fxHide.lt-md style="padding-left: 30px;">
+    <span class="listItem" [routerLink]="['/add-new']">AddNewPatient</span>
+  </div>
+  <div fxShow="true" fxHide.lt-md style="padding-left: 30px;">
+    <a routerLink="/list" routerLinkActive="active-list-item">PatientsList</a>
+  </div>
+    <span class="menu-spacer"></span>
+    <mat-icon>list</mat-icon> 
+</mat-toolbar>
+
+<mat-sidenav-container fxFlexFill>
+    <mat-sidenav #sidenav>
+      <mat-nav-list>
+        <a class="listItem" [routerLink]="['/home']" mat-list-item>Home</a>
+        <a class="listItem" [routerLink]="['/add-new']" mat-list-item>Add New Patient</a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <div class="example-header" fxLayout="row">
+      <mat-form-field> 
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+    </div>
+    <div class="example-container">
+        <mat-table [dataSource]="dataSource" matSort>
+      
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="name"> {{row.firstName}} {{row.lastName}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="regDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Registration Date </mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="Registration Date"> {{row.regDate}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="doctor">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Doctor </mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="doctor"> {{row.doctor.firstName}} {{row.doctor.lastName}} </mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="phone">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Phone </mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="phone"> {{row.phone}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="street">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Street </mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="street"> {{row.street}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="city">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> City </mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="city"> {{row.city}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="zip">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Zip Code </mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="zip code"> {{row.zipcode}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="country">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Country </mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="country"> {{row.country}} </mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="columndelete">
+            <mat-header-cell mat-header-cell *matHeaderCellDef> </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let row">       
+            <mat-icon style="color: #6b103e;" (click)="delete(row)">delete</mat-icon> </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="info">
+            <mat-header-cell mat-header-cell *matHeaderCellDef> </mat-header-cell>
+            <mat-cell mat-cell *matCellDef="let row">       
+            <mat-icon style="color: #036113;" (click)="openDialog(row.id)">info</mat-icon> </mat-cell>
+          </ng-container>
+      
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+      </div>
+    
+</mat-sidenav-container>

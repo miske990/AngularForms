@@ -1,0 +1,233 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div fxShow="true" fxHide.lt-md>
+        <span class="listItem" [routerLink]="['/home']" mat-list-item>Home</span>
+      </div>
+      <div fxShow="true" fxHide.lt-md style="padding-left: 30px;">
+        <a routerLink="/add-new" routerLinkActive="active-list-item">AddNewPatient</a>
+      </div>
+      <div fxShow="true" fxHide.lt-md style="padding-left: 30px;">
+        <span class="listItem" [routerLink]="['/list']">PatientsList</span>
+      </div>
+    <span class="menu-spacer"></span>
+    <mat-icon>person_add</mat-icon> 
+</mat-toolbar>
+
+<mat-sidenav-container fxFlexFill>
+    <mat-sidenav #sidenav>
+      <mat-nav-list>
+        <a class="listItem" [routerLink]="['/home']" mat-list-item>Home</a>
+        <a class="listItem" [routerLink]="['/list']" mat-list-item>Patients List</a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content fxFlexFill fxLayout="column" class="sidenavContent">
+        <form  fxFlex="100" [formGroup]="addForm">
+            <div fxFlex="100" class="title">Create new patient</div>
+            <div fxFlex="100" fxFlex.xs="90" class="field">
+                <mat-form-field appearance="fill">
+                    <mat-label>First Name:</mat-label>
+                    <input type="text" matInput formControlName="firstName">
+                    <mat-error *ngIf="addForm.controls.firstName.errors?.required">
+                        You must provide first name
+                    </mat-error> 
+                </mat-form-field>
+            </div>
+            <div fxFlex="100" fxFlex.xs="90" class="field">
+                <mat-form-field appearance="fill">
+                    <mat-label>Last Name:</mat-label>
+                    <input type="text" matInput formControlName="lastName">
+                    <mat-error *ngIf="addForm.controls.lastName.errors?.required">
+                        You must provide last name
+                    </mat-error> 
+                </mat-form-field>
+            </div>
+            <div fxFlex="100" fxFlex.xs="90" class="field">
+                <mat-form-field appearance="fill">
+                    <mat-label>Birth Date:</mat-label>
+                    <input matInput readonly formControlName="birthdate"  [max]="currentDate" [min]="minDate" [matDatepicker]="dp"
+                     (dateChange)="getEndDate('change', $event)">
+                    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                    <mat-datepicker #dp></mat-datepicker>
+                    <mat-error *ngIf="!addForm.controls['birthdate'].valid">
+                        You must provide birth date
+                    </mat-error> 
+                </mat-form-field>
+            </div>
+            <div fxFlex="100" fxFlex.xs="90" class="field">
+                <mat-form-field appearance="fill">
+                    <mat-label>VAT code:</mat-label>
+                    <input type="text" matInput formControlName="vat" placeholder="Mandatory if the patient is older than 18 years" [required]="adult==true">
+                    <mat-error *ngIf="adult==true && (addForm.controls['vat'].touched || addForm.controls['vat'].dirty)">
+                        You must provide VAT code
+                    </mat-error> 
+                </mat-form-field>
+            </div>
+            <div fxFlex="100" fxFlex.xs="90" class="field">
+                <mat-form-field appearance="fill">
+                    <mat-label>Email:</mat-label>
+                    <input type="text" matInput formControlName="email">
+                    <mat-error *ngIf="addForm.controls.email.errors?.required">
+                        You must provide email
+                    </mat-error> 
+                    <mat-error *ngIf="addForm.controls.email.errors?.email">
+                        Email format is incorrect! (e.g emailname@email.com )
+                    </mat-error> 
+                </mat-form-field>
+            </div>
+            <div fxFlex="100" fxFlex.xs="90" class="field">
+                <mat-form-field appearance="fill">
+                    <mat-label>Doctor:</mat-label>
+                    <mat-select formControlName="doctor">
+                        <mat-option  *ngFor="let doctor of doctors_list,let i = index" [value]="doctor">
+                            {{doctor.firstName}} {{doctor.lastName}},{{doctor.title}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="addForm.controls.doctor.errors?.required">
+                        You must provide doctor
+                    </mat-error> 
+                </mat-form-field>
+            </div>
+
+            <div fxFlex="100" class="homeAddress">Address No.1</div>
+            <div fxFlex="100" fxFlex.xs="90" class="field">
+                <mat-form-field appearance="fill">
+                    <mat-label>Phone:</mat-label>
+                    <input type="text" matInput formControlName="phone">
+                    <mat-error *ngIf="addForm.controls.phone.errors?.required">
+                        You must provide phone number
+                    </mat-error> 
+                    <mat-error>Phone number must start with '+39'</mat-error>
+                </mat-form-field>
+            </div>
+            <div fxFlex="100" fxFlex.xs="90" fxLayout="row" style="display: flex;justify-content: center;width: 472px;margin-right: auto;margin-left: auto;">
+                <div fxFlex="50">
+                    <mat-form-field style="width: 230px;" appearance="fill">
+                        <mat-label>Street:</mat-label>
+                        <input type="text" matInput formControlName="street">
+                        <mat-error *ngIf="addForm.controls.street.errors?.required">
+                            You must provide street
+                        </mat-error> 
+                    </mat-form-field>
+                </div>
+                <div fxFlex="50">
+                    <mat-form-field style="width: 230px;margin-left: 5px;" appearance="fill">
+                        <mat-label>City:</mat-label>
+                        <input type="text" matInput formControlName="city">
+                        <mat-error *ngIf="addForm.controls.city.errors?.required">
+                            You must provide city
+                        </mat-error> 
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxFlex="100" fxFlex.xs="90" fxLayout="row" style="display: flex;justify-content: center;width: 472px;margin-right: auto;margin-left: auto;">
+                <div fxFlex="50">
+                    <mat-form-field style="width: 230px;" appearance="fill">
+                        <mat-label>ZIP Code:</mat-label>
+                        <input type="text" matInput formControlName="zipcode">
+                        <mat-error *ngIf="addForm.controls.zipcode.errors?.required">
+                            You must provide zip code
+                        </mat-error> 
+                    </mat-form-field>
+                </div>
+                <div fxFlex="50">
+                    <mat-form-field style="width: 230px;margin-left: 5px;" appearance="fill">
+                        <mat-label>Country:</mat-label>
+                        <input type="text" matInput formControlName="country">
+                        <mat-error *ngIf="addForm.controls.country.errors?.required">
+                            You must provide country
+                        </mat-error> 
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div fxFlex="100" fxLayout="column">
+                <div formArrayName="anotherAddress" fxFlex="100" fxLayout="column">
+                    <div fxFlex="100" fxLayout="column" *ngFor="let items of getControls(); let i=index">
+                    <div [formGroupName]="i" fxFlex="100" fxLayout="column">
+                        <div fxFlex="100" class="homeAddress">Address No.{{i+2}}</div>
+                        <div fxFlex="100" fxFlex.xs="90" class="field">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Type:</mat-label>
+                                <mat-select formControlName="type" (selectionChange)="onChange($event.value)">
+                                    <mat-option>none</mat-option>
+                                    <mat-option  *ngFor="let type of types" [value]="type.name">
+                                        {{type.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div *ngIf="show==true" fxFlex="100" fxFlex.xs="90" class="field">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Name:</mat-label>
+                                <input type="text" matInput formControlName="name">
+                            </mat-form-field>
+                        </div>
+                        <div fxFlex="100" fxFlex.xs="90" class="field">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Phone:</mat-label>
+                                <input type="text" matInput formControlName="phone" [required]="required==true">
+                                <mat-error *ngIf="items.controls['phone'].errors?.required && (items.controls['phone'].touched || items.controls['phone'].dirty)">
+                                    You must provide phone number
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div fxFlex="100" fxFlex.xs="90" fxLayout="row" style="display: flex;justify-content: center;width: 472px;margin-right: auto;margin-left: auto;">
+                            <div fxFlex="50">
+                                <mat-form-field style="width: 230px;" appearance="fill">
+                                    <mat-label>Street:</mat-label>
+                                    <input matInput formControlName="street" [required]="required==true">
+                                    <mat-error *ngIf="(items.controls['street'].touched || items.controls['street'].dirty)">
+                                        You must provide street
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex="50">
+                                <mat-form-field style="width: 230px;margin-left: 5px;" appearance="fill">
+                                    <mat-label>City:</mat-label>
+                                    <input type="text" matInput formControlName="city" [required]="required==true">
+                                    <mat-error *ngIf="(items.controls['city'].touched || items.controls['city'].dirty)">
+                                        You must provide city
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div fxFlex="100" fxFlex.xs="90" fxLayout="row" style="display: flex;justify-content: center;width: 472px;margin-right: auto;margin-left: auto;">
+                            <div fxFlex="50">
+                                <mat-form-field style="width: 230px;" appearance="fill">
+                                    <mat-label>ZIP Code:</mat-label>
+                                    <input type="text" matInput formControlName="zipcode" [required]="required==true">
+                                    <mat-error *ngIf="(items.controls['zipcode'].touched || items.controls['zipcode'].dirty)">
+                                        You must provide zip code
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex="50">
+                                <mat-form-field style="width: 230px;margin-left: 5px;" appearance="fill">
+                                    <mat-label>Country:</mat-label>
+                                    <input type="text" matInput formControlName="country" [required]="required==true">
+                                    <mat-error *ngIf="(items.controls['country'].touched || items.controls['country'].dirty)">
+                                        You must provide country
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div fxFlex="100" fxFlex.xs="90" class="field">
+                            <button (click)='removeInput(i)' class="removeAddress">Remove address</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+              </div>
+
+            <div fxFlex="100" fxFlex.xs="90"class="field">
+                <button (click)='addInput()' class="addAddress">Add address</button>
+            </div>
+            <div fxFlex="100" fxFlex.xs="90" class="field">
+                <button (click)="save()" [disabled]="!addForm.valid && required==true" class="saveButton">Save</button>
+            </div>
+        </form>
+    </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,61 @@
+<h2 mat-dialog-title style="text-align: center;">Patient Details</h2>
+
+<mat-dialog-content>
+    <mat-form-field>
+        <input matInput readonly [(ngModel)]="data.id" placeholder="Id:">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput readonly [(ngModel)]="data.regDate" placeholder="Registration date:">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput readonly [(ngModel)]="data.firstName" placeholder="Name:">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput readonly [(ngModel)]="data.doctor" placeholder="Doctor:">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput readonly [(ngModel)]="data.email" placeholder="Email:">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput readonly [(ngModel)]="data.phone" placeholder="Phone:">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput readonly [(ngModel)]="data.city" placeholder="City:">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput readonly [(ngModel)]="data.street" placeholder="Street:">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput readonly [(ngModel)]="data.zipcode" placeholder="Zip code:">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput readonly [(ngModel)]="data.country" placeholder="Country:">
+    </mat-form-field>
+
+    <div *ngFor="let item of data.anotherAddress,let i = index"> 
+        <h4 style="text-align: center;">Address: {{i+2}}</h4>
+        <mat-form-field>
+            <input matInput readonly [value]="item.type" placeholder="Type:">
+        </mat-form-field>
+        <mat-form-field *ngIf="item.name !== '' ">
+            <input matInput readonly [value]="item.name" placeholder="Name:">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput readonly [value]="item.phone" placeholder="Phone:">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput readonly [value]="item.street" placeholder="Street:">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput readonly [value]="item.city" placeholder="City:">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput readonly [value]="item.zipcode" placeholder="Zip Ccde:">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput readonly [value]="item.country" placeholder="Country:">
+        </mat-form-field>
+    </div>
+
+</mat-dialog-content>
+

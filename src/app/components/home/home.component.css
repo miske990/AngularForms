@@ -1,0 +1,146 @@
+:host ::ng-deep .mat-drawer-inner-container{ 
+    width: 40vh !important;
+    background-color: #364594;
+    border: none;
+} 
+
+:host ::ng-deep .mat-list-base .mat-list-item .mat-list-item-content{ 
+    padding: 0px 25px;
+}
+
+:host ::ng-deep .mat-drawer-backdrop.mat-drawer-shown {
+    background-color: transparent;
+}
+
+:host ::ng-deep .material-icons {
+    font-size: 30px;
+}
+
+.sidenavContent {
+    background-size: cover;
+    background-position: center center;
+    height: 100%;
+    position: relative;
+    background-color: rgb(193 193 193 / 60%);
+    background-blend-mode: lighten;
+}
+
+.menu-spacer {
+    flex: 1 1 auto;
+}
+
+.listItem {
+    color: #ffffff;
+    font-family: century-gothic, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 18px;
+}
+
+.active-list-item {
+    font-family: century-gothic, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 18px;
+    text-decoration: none;
+    color: #02040e;
+}
+
+.title {
+    font-size: 35px;
+    margin-bottom: 10px;
+    font-family: century-gothic, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    line-height: normal;
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 3%;
+    height: 50px;
+    color: rgb(19, 18, 18);
+    text-shadow: 2px 2px 4px #585858;
+}
+
+.content {
+    font-size: 25px;
+    margin-bottom: 10px;
+    font-family: century-gothic, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    line-height: normal;
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 3%;
+    height: 50px;
+    color: rgb(23, 0, 105);
+    text-shadow: 2px 2px 4px #585858;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    height: auto;
+}
+
+.content2 {
+    font-size: 25px;
+    margin-bottom: 10px;
+    font-family: century-gothic, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    line-height: normal;
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 3%;
+    height: 50px;
+    color: rgb(23, 0, 105);
+    text-shadow: 2px 2px 4px #585858;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    height: auto;
+}
+
+@media screen and (max-width: 960px) {
+    .content {
+        width: 60%;
+    }
+
+    .content2 {
+        width: 60%;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    .content {
+        font-size: 20px;
+    }
+
+    .content2 {
+        font-size: 20px;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+    .content {
+        width: 80%;
+    }
+    .content2 {
+        width: 80%;
+    }
+
+}
+
+@media screen and (max-width: 500px) {
+    .title {
+        font-size: 30px;
+    }
+
+}
+
+@media screen and (max-width: 400px) {
+    .title {
+        font-size: 27px;
+    }
+
+}
