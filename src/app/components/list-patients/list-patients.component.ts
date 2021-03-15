@@ -1,10 +1,11 @@
 import { LoadDataService } from './../../services/load-data.service';
-import { AfterViewInit, Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { AddNew } from 'src/app/shared/interface/addNew';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class ListPatientsComponent implements OnInit, AfterViewInit {
   new: any  = [];
   result: any;
 
-  constructor(private loadDataService: LoadDataService, public dialog: MatDialog) { 
+  constructor(private loadDataService: LoadDataService, public dialog: MatDialog, private router: Router) { 
     this.loadDataService.patientData.subscribe(patient => this.patient = patient);
     this.dataSource = new MatTableDataSource(this.patient);
   }

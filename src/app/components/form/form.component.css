@@ -1,0 +1,212 @@
+:host ::ng-deep .mat-drawer-inner-container{ 
+    width: 40vh !important;
+    background-color: #364594;
+    border: none;
+} 
+ 
+.sidenavContent {
+    background: rgb(0 0 0 / 87%);
+}
+
+:host ::ng-deep .mat-list-base .mat-list-item .mat-list-item-content{ 
+    padding: 0px 25px;
+}
+
+.listItem {
+    color: #ffffff;
+    font-family: century-gothic, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 18px;
+}
+
+.menu-spacer {
+    flex: 1 1 auto;
+}
+
+:host ::ng-deep .material-icons {
+    font-size: 30px;
+}
+
+.active-list-item {
+    font-family: century-gothic, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 18px;
+    text-decoration: none;
+    color: #02040e;
+}
+
+:host ::ng-deep  mat-datepicker-toggle {
+    color: rgb(0, 184, 216);
+}
+
+::ng-deep .mat-select-arrow {
+    color: rgb(0, 184, 216);
+}
+
+.mat-form-field {
+    width: 472px;
+}
+
+.field {
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+:host ::ng-deep .mat-select-value {
+    color: rgb(255, 255, 255) !important;
+    font-family: century-gothic, sans-serif;    
+    font-weight: 400;
+    font-style: normal;
+}
+
+:host ::ng-deep form {
+    display: initial !important;
+    margin-top: 5%;
+}
+
+:host ::ng-deep  .mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: transparent !important;
+    border-bottom: 2px solid rgb(0, 184, 216);
+    padding: 0.75em 0.75em 2px 0.75em !important;
+}
+
+::ng-deep .mat-input-element::placeholder{
+    color: rgb(0, 94, 97);
+}
+
+:host ::ng-deep  .mat-form-field-label-wrapper .mat-icon {
+    vertical-align: bottom !important;
+    margin-left: 55px;
+}
+
+:host ::ng-deep  .mat-form-field.mat-focused .mat-form-field-ripple {
+    background-color: transparent;
+}
+
+:host ::ng-deep  .mat-form-field-ripple {
+    background-color: transparent;
+}
+
+:host ::ng-deep .mat-form-field-appearance-fill .mat-form-field-ripple {
+    height: 1px !important;
+}
+
+.mat-form-field .mat-form-field-ripple {
+    background-color: transparent;
+}
+
+:host ::ng-deep .mat-form-field-label-wrapper {
+    top: -1.3em !important;
+}
+
+:host ::ng-deep .mat-input-element {
+    color: rgb(255, 255, 255) !important;
+    caret-color: rgb(255, 255, 255) !important;
+    padding: 3px !important;
+    font-family: century-gothic, sans-serif;    
+    font-weight: 400;
+    font-style: normal;
+}
+
+:host ::ng-deep  .mat-form-field.mat-form-field-invalid .mat-form-field-ripple {
+    border: 1px solid #f44336 !important;
+}
+
+:host ::ng-deep .mat-form-field-label {
+    color: rgb(6, 207, 243) !important;
+    font-family: century-gothic, sans-serif !important;    
+    font-weight: 400 !important;
+    font-style: normal !important;
+    font-size: 20px !important;
+}
+
+:host ::ng-deep .mat-select-value {
+    height: 2.7vh !important;
+}
+
+.saveButton {
+    background-color: #00cce2;
+    color: #0a1d88;
+    padding: 8px;
+    border: 1px solid #00cce2;
+    font-family: century-gothic, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 40px;
+    min-width: 472px;
+    max-width: 472px;
+    margin-bottom: 2%;
+}
+
+.addAddress {
+    background-color: #1c44d0;
+    color: #00cce2;
+    padding: 8px;
+    border: 1px solid #1c44d0;
+    font-family: century-gothic, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px;
+    margin-bottom: 4%;
+    margin-top: 1%;
+    outline: none;
+    min-width: 472px;
+    max-width: 472px;
+}
+
+.removeAddress {
+    background-color: #a2204d;
+    color: #ababab;
+    padding: 8px;
+    border: 1px solid #a2204d;
+    font-family: century-gothic, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px;
+    margin-bottom: 1%;
+    margin-top: 7%;
+    padding-left: 23px;
+    padding-right: 23px;
+    outline: none;
+    min-width: 472px;
+    max-width: 472px;
+}
+
+.areaCode {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.phone {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.homeAddress {
+    color: rgb(4 120 140);
+    font-family: century-gothic, sans-serif;    
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    justify-content: center;
+    display: flex;
+    margin-bottom: 1%;
+    margin-top: 2%;
+    text-shadow: 2px 2px 4px #1c3573;
+}
+
+.title {
+    color: #0eaaab;
+    font-family: century-gothic, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 35px;
+    justify-content: center;
+    display: flex;
+    margin-bottom: 3%;
+    text-shadow: 2px 2px 4px #396971;
+}

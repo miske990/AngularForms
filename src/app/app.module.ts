@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddPatientComponent } from './components/add-patient/add-patient.component';
 import { ListPatientsComponent, DialogDataExampleDialog } from './components/list-patients/list-patients.component';
 import { CommonModule } from '@angular/common';
+import { FormComponent } from './components/form/form.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CommonModule } from '@angular/common';
     HomeComponent,
     AddPatientComponent,
     ListPatientsComponent,
-    DialogDataExampleDialog
+    DialogDataExampleDialog,
+    FormComponent
   ],
   imports: [
     BrowserModule,
